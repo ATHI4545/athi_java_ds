@@ -1,28 +1,45 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class Main {
+public class AlternateSort {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] arr = new int[6];
- 
-        for (int i = 0; i <= 6; i++) {
+
+        System.out.print("Enter the number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Enter elements:");
+        for(int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
 
-       int st=0;
-       int en=arr.length-1;
-       int t=0;
-        int[] ans=new int[arr.length];
-       while(st<=en){
-        if(t<arr.length){
-            ans[t++]=arr[en--];
+        for(int i = 0; i < n-1; i++) {
+            for(int j = 0; j < n-1-i; j++) {
+                if(arr[j] > arr[j+1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
         }
-        else{
-            ans[t++]=arr[st++];
+
+        int[] result = new int[n];
+        int start = 0;
+        int end = n - 1;
+        boolean turn = true; 
+        int idx = 0;
+
+        while(start <= end) {
+            if(turn) {
+                result[idx++] = arr[end--];
+            } else {
+                result[idx++] = arr[start++];
+            }
+            turn = !turn;
         }
-        for(int num:ans){
-            System.out.print(arr[num]+" ");
+        System.out.println("Alternate Sorted Output:");
+        for(int val : result) {
+            System.out.print(val + " ");
         }
-       }
-}
+    }
 }
