@@ -1,5 +1,6 @@
-
-public class Solution {
+sw
+pu
+blic class Solution {
     public boolean hasCycle(ListNode head) {
         ListNode slow=head;
         ListNode fast=head;
